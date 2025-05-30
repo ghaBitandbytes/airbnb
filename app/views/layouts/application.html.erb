@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ogden</title>
+    <title>Airbnb | Holiday rentals, cabins, beach houses and more</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= favicon_link_tag 'favicon.ico' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
@@ -11,9 +13,14 @@
     <%= javascript_importmap_tags %>
   </head>
  
-  <body class="min-h-screen flex items-center justify-center">
-    <%= yield %>
-  </body>
+  <!-- Creating a partial just like componenets in rails -->
+
+  <body class="bg-gray-100">
+  <%= render 'layouts/header' %>
+  <%= yield %>
+</body>
+
 </html>
  
  
+
