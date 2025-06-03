@@ -15,7 +15,9 @@
  
   <!-- Creating a partial just like componenets in rails -->
 
-  <body class="bg-gray-100">
+  <body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <%= render 'layouts/header' %>
   <%= yield %>
 </body>
