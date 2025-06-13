@@ -11,4 +11,12 @@ Rails.application.routes.draw do
 
   root "home#index"
   devise_for :users
+
+  namespace :api do 
+    resources :wishlists, only: [:create, :destroy]
+end
+
+ resources :properties, only: [:show]
+
+
 end
