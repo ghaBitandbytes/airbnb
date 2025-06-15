@@ -29,6 +29,13 @@
     }
   }
   
+  /* app/assets/stylesheets/application.css */
+
+/* ... other existing CSS ... */
+
+.airbnb-logo path {
+  fill: #FF385C !important;
+}
   .swiper-button-next {
     display: none !important;
     width: 28px !important;

@@ -11,3 +11,4 @@ pin "trix"
 
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
+pin "flatpickr" # @4.6.13

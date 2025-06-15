@@ -70,23 +70,28 @@ total_properties.times do |i|
   })
 
 
-  # Select images for this property
-  property_images = if all_images.size >= images_per_property
-                     all_images.pop(images_per_property)
-                   else
-                     # If we run out of unique images, start reusing from the beginning
-                     (all_images + (1..total_images).to_a).take(images_per_property)
-                   end
+  # Before your property creation loop:
+@available_images = (1..total_images).to_a.shuffle  # Shuffle once initially
 
-  property_images.each do |image_num|
-    image_path = "db/images/prop_#{image_num}.png"
-    
-    if File.exist?(image_path)
-      property.images.attach(io: File.open(image_path), filename: "#{property.name}_#{image_num}")
-    else
-      puts "Image not found: #{image_path}"
-    end
+# Inside your property creation:
+property_images = @available_images.shift(images_per_property)
+
+# If we ran out of images, reshuffle and take more
+if property_images.size < images_per_property
+  @available_images = (1..total_images).to_a.shuffle
+  property_images += @available_images.shift(images_per_property - property_images.size)
+end
+
+# Attach images
+property_images.each do |image_num|
+  image_path = "db/images/prop_#{image_num}.png"
+  if File.exist?(image_path)
+    property.images.attach(io: File.open(image_path), filename: "#{property.name}_#{image_num}")
+  else
+    puts "⚠️ Image not found: #{image_path}"
   end
+end
+
 
   ((5..10).to_a.sample).times do
     Review.create!({

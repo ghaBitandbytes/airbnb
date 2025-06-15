@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.airbnb-logo path {
+  fill: #FF385C;
+}
 /*
 
 @layer components {
